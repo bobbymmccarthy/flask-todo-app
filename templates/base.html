@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Todo App</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        <h1>Todo App</h1>
+        <form action = "/add", method = "post">
+            <div>
+                <label for = "title">Todo Title</label>
+                <input type = "text" name = "title" placeholder = "Enter Todo....">
+                <button type = "submit">Add</button>
+            </div>
+        </form>
+        {% for todo in todo_list%}
+            <div style = "display: flex; width: 275px">
+            {% if not todo.complete%}
+                <a style = "margin: auto;" href ="/update/{{ todo.id }}"> Not Complete</a>
+            {% else %}
+                <a style = "margin: auto;" href ="/update/{{ todo.id }}"> Complete</a>
+            {% endif %}
+
+            <p> {{todo.id}} | {{todo.title}}</p>
+            <a style = "margin: auto;" href ="/delete/{{ todo.id }}"> DELETE</a>
+            </div>
+        {% endfor %}
+    </body>
+</html>
